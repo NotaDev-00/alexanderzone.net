@@ -7,12 +7,18 @@ if (isset($_POST['submit'])) {
   $subject = $_POST['subject'];
   $message = $_POST['message'];
 
-  $mailTo = "your@email.com";
+  $mailTo = "alexanderzone.net@gmail.com";
   $headers = "From: ".$email;
   $txt = "You have received an email from ".$name.".\n\n".$message;
 
-  mail($mailTo, $subject, $txt, $headers);
-  header("Location: index.html");
+  // Try to send the email
+  if (mail($mailTo, $subject, $txt, $headers)) {
+    // If the email was sent successfully, redirect the user to the success page
+    header("Location: typage.html");
+  } else {
+    // If the email was not sent, redirect the user to the error page
+    header("Location: error2.html");
+  }
 }
 
 ?>
